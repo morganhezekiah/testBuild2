@@ -1,0 +1,87 @@
+
+.mainWrapper{
+    width:40%;
+    background: white;
+    color:black;
+    padding:30px;
+    margin:30px auto;
+    box-shadow: 1px 2px 8px #b1acac;
+    position: relative;
+
+}
+.sex_form_div{
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.center_button{
+    display: flex;
+    justify-content: center;
+}
+.navigation_buttons {
+    position:absolute;
+    font-weight: bolder;
+    cursor:pointer;
+    font-size: 29px;
+    top: -10px;
+    right: 20px;
+
+    border-radius: 50%;
+}
+label {
+    font-size: 13px;
+    color: grey;
+}
+.error{
+    color:crimson;
+    font-size:12px;
+}
+.disabled{
+    opacity:0.5;
+    pointer-events:none;
+}
+.steps_wrapper{
+    width:100%;
+    display:flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.steps{
+    border: 1px solid #e5e5ff;
+    position:relative;
+    padding: 5px;
+    border-radius: 100%;
+    box-shadow:  0px 1px 9px #101023;
+    margin-top:-10px;
+    margin-bottom:10px;
+}
+.steps::after{
+    content :"";
+    position: absolute;
+    border:0.5px solid rgb(100, 100, 202);
+    height:1px;
+    width:200%;
+    top:50%;
+    transform:translateX(100%);
+    margin-left:10px;
+}
+.steps.current {
+    box-shadow:1px -1px 0px 0px #f1f1f1;;
+}
+#last_step::after{
+    content :"";
+    position: absolute;
+    border:0px solid blue;
+    width:200%;
+    top:50%;
+    margin-left:10px;
+}

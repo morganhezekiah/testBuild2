@@ -1,0 +1,25 @@
+
+.mainWrapper{
+    width:40%;
+    background: white;
+    color:black;
+    padding:30px;
+    margin:30px auto;
+    box-shadow: 1px 2px 8px #b1acac;
+    position: relative;
+
+}
+
+.center_button{
+    display: flex;
+    justify-content: center;
+}
+
+label {
+    font-size: 13px;
+    color: grey;
+}
+.error{
+    color:crimson;
+    font-size:12px;
+}
