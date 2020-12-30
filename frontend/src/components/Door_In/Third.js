@@ -61,11 +61,9 @@ const Third = props =>{
             [e.target.name]:e.target.value
         })
     }
-    const submit =e=>{
+   
+     const handleSubmit =  (e) =>{
         e.preventDefault();
-        handleSubmit();
-    }
-    async function handleSubmit (e){
         setLoading(true);
 
         if(formData.password === ""){
@@ -87,13 +85,13 @@ const Third = props =>{
 
         if(passwordError.state === false && emailError.state === false){
             let data = {'email':formData.email,'password':formData.password};
-            await props.third_screen_func(data);
+            props.third_screen_func(data);
         }
         setLoading(false);
     }
     return (
         <div className="card card-body mainWrapper">
-            <form className="form-horizontal" onSubmit={submit}>
+            <form className="form-horizontal" onSubmit={handleSubmit}>
                 <div className="steps_wrapper">
                     <div className="steps" >1</div>
                     <div className="steps" >2</div>
