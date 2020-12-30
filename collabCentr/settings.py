@@ -46,6 +46,10 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
+    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -135,3 +139,4 @@ AUTH_USER_MODEL ="users.User"
 LOGIN_URL ="/users/login"
 LOGIN_REDIRECT = "/users/home"
 STRIPE_KEY ="sk_test_51I3rSOFLCTJtfSf3iZ45B8b4tFIcuhrY2SpCXhGKbiVqD7UwROvkUh9fKdBTL51bPQtDE4vfalNbWD9MR0uAb2nM00aPQWAqQc"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
