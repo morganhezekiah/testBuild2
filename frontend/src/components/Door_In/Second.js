@@ -20,9 +20,6 @@ const Second = props => {
 
     const [descriptionData,setdescriptionData] = useState(0);
 
-    const [loading, setLoading] = useState(false);
-
-    const [btnClass, setBtnClass] = useState("btn btn-outline-primary");
 
     const [describeError, setDescribeError] = useState({
         message:"",
@@ -30,12 +27,8 @@ const Second = props => {
     });
 
     useEffect(()=>{
-        if(loading){
-            setBtnClass("btn btn-outline-primary disabled");
-        }else{
-            setBtnClass("btn btn-outline-primary");
-        }
-    },[loading]);
+        console.log(props.loading_data);
+    });
 
     useEffect(()=>{
         setCurrentNiche(EntertainmentNiche);
@@ -70,7 +63,6 @@ const Second = props => {
 
     const handleSubmit =  (e)=>{
         e.preventDefault();
-        setLoading(true);
         if(formData.description === "" || descriptionData > 200){
             setDescribeError({
                 'message':'Please enter a self description less than 200 characters in length',
@@ -82,7 +74,6 @@ const Second = props => {
             let data = {'fieldSet':formData.fieldset, 'niche':formData.niche,'description':formData.description};
              props.second_screen_func(data);
         }
-        setLoading(false);
     }
 
     
@@ -133,7 +124,9 @@ const Second = props => {
                 </div>
 
                 <div className="form-group center_button">
-                    <input type="submit" className={btnClass} value="Continue" />
+                    {
+                        props.loading_data.loading ? <input type="submit" className="btn btn-outline-primary disabled" value="Continue" />:<input type="submit" className="btn btn-outline-primary" value="Continue" />
+                    }
                 </div>
             </form>
         </div>
@@ -142,7 +135,8 @@ const Second = props => {
 
 const mapStateToProps = state =>{
     return {
-        second_screen_data:state.Second
+        second_screen_data:state.Second,
+        loading_data:state.Loading
     }
 }
 

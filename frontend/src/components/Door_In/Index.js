@@ -12,7 +12,7 @@ const Index = (props) =>{
             setCurrentScreen(<Loader />);
         }else{
             if(props.screen.currentScreen === 'first'){
-                setCurrentScreen(<First />);
+                setCurrentScreen(<Third />);
             }else if(props.screen.currentScreen === 'second'){
                 setCurrentScreen(<Second />);
             }else{

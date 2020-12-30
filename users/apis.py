@@ -4,8 +4,11 @@ from rest_framework.views import APIView
 from django.http import JsonResponse
 from .utils import authenticator
 from django.contrib import auth
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 
+# @method_decorator(csrf_exempt, name='dispatch')
 class CreateUser(APIView):
     def post(self, request):
         data = request.data

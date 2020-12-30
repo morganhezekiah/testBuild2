@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'qpktth&r^1ib5p=!@o8@b76r1%vbz4z$h7_o#o&8ujpeu*22i^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["collabcentrfirstbuild2.herokuapp.com","127.0.0.1:8000"]
+ALLOWED_HOSTS = ["collabcentrfirstbuild2.herokuapp.com","127.0.0.1"]
 
 
 # Application definition

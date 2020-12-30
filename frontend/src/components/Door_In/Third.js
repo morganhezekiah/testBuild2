@@ -9,16 +9,7 @@ const Third = props =>{
         password:''
     });
 
-    const [loading, setLoading] = useState(false);
-    const [btnClass, setBtnClass] = useState("btn btn-outline-primary");
 
-    useEffect(()=>{
-        if(loading){
-            setBtnClass("btn btn-outline-primary disabled");
-        }else{
-            setBtnClass("btn btn-outline-primary");
-        }
-    });
 
     const [passwordError, setPasswordError] = useState({
         message:'',
@@ -61,10 +52,12 @@ const Third = props =>{
             [e.target.name]:e.target.value
         })
     }
+    useEffect(()=>{
+        console.log(props.loading_data)
+    });
    
      const handleSubmit =  (e) =>{
         e.preventDefault();
-        setLoading(true);
 
         if(formData.password === ""){
             setPasswordError({
@@ -87,7 +80,6 @@ const Third = props =>{
             let data = {'email':formData.email,'password':formData.password};
             props.third_screen_func(data);
         }
-        setLoading(false);
     }
     return (
         <div className="card card-body mainWrapper">
@@ -115,7 +107,9 @@ const Third = props =>{
                     </span>
                 </div>
                 <div className="form-group center_button">
-                    <input type="submit" className= {btnClass} value="Door In" />
+                    {
+                        props.loading_data.loading ? <input type="submit" className="btn btn-outline-primary disabled" value="Continue" />:<input type="submit" className="btn btn-outline-primary" value="Continue" />
+                    }
                 </div>
             </form>
         </div>
@@ -125,7 +119,8 @@ const Third = props =>{
 
 const mapStateToProps = state =>{
     return {
-        third_screen_data:state.third
+        third_screen_data:state.third,
+        loading_data:state.Loading
     }
 }
 
