@@ -41,3 +41,21 @@
     color:white;
     width:100%;
 }
+
+@media(max-width:704px){
+    .home{
+        width:70%;
+    }
+}
+
+@media(max-width:308px){
+    body{
+        overflow-x: hidden;
+    }
+    .home .footer{
+        display:none;
+    }
+    .home{
+        width:100%;
+    }
+}
