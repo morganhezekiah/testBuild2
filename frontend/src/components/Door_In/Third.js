@@ -94,11 +94,6 @@ const Third = props =>{
         <div className="card card-body mainWrapper">
             <Step />
             <form className="form-horizontal" onSubmit={handleSubmit}>
-                <div className="steps_wrapper">
-                    <div className="steps" >1</div>
-                    <div className="steps" >2</div>
-                    <div className="steps current" id="last_step">3</div>
-                </div>
                 <div className="form-group">
                     <input type="text" name="email" autoComplete="false" value={formData.email} onChange={handleChange} placeholder="email" className="form-control" />
                     <span className="error">

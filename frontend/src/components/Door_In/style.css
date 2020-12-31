@@ -85,3 +85,21 @@ label {
         display:none;
     }
 }
+
+@media(max-width:677px){
+    .mainWrapper{
+        width: 70% !important;
+    }
+}
+
+@media(max-width:343px){
+    .mainWrapper{
+        width: 90% !important;
+    }
+}
+
+@media(max-width:190px){
+    .mainWrapper{
+        width: 100% !important;
+    }
+}
