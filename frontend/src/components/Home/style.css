@@ -21,7 +21,7 @@
     display:flex;
     justify-content: center;
 }
-.home .door_in_button_wrapper button {
+.home .door_in_button_wrapper #door_in_btn {
     width:80%;
     background: orange;
     border: 1px solid orange;
@@ -29,9 +29,11 @@
     color:white;
     margin-top:40px;
 }
-.home .door_in_button_wrapper button a{
+.home .door_in_button_wrapper #door_in_btn button {
+    border: none;
+    background: transparent;
     color: white;
-    text-decoration: none;
+    width: 100%;
 }
 
 .home .footer{
