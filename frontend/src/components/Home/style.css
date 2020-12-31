@@ -37,11 +37,11 @@
 }
 
 .home .footer{
-    position: absolute;
-    bottom:10px;
-    display:flex;
-    color:white;
-    width:100%;
+    display: flex;
+    color: white;
+    width: 100%;
+    justify-content: space-around;
+    margin: 50px auto 0px auto;
 }
 
 @media(max-width:704px){
@@ -50,14 +50,5 @@
     }
 }
 
-@media(max-width:308px){
-    body{
-        overflow-x: hidden;
-    }
-    .home .footer{
-        display:none;
-    }
-    .home{
-        width:100%;
-    }
-}
+
+
