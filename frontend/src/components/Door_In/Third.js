@@ -2,8 +2,17 @@ import React,{ useEffect, useState } from 'react';
 import './style.css';
 import SendData from '../../store/Dispatch/Door_In/Third';
 import { connect } from 'react-redux';
+import Step from './StepsIndicator'
 
 const Third = props =>{
+
+    useEffect(()=>{
+        if(document.getElementById("thirdStep")){
+            document.getElementById("thirdStep").classList.add("active");
+        }
+    },[]);
+
+
     const [ formData, setFormData ] = useState({
         email:'',
         password:''
@@ -83,6 +92,7 @@ const Third = props =>{
     }
     return (
         <div className="card card-body mainWrapper">
+            <Step />
             <form className="form-horizontal" onSubmit={handleSubmit}>
                 <div className="steps_wrapper">
                     <div className="steps" >1</div>

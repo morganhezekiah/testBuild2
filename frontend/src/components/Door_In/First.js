@@ -3,6 +3,7 @@ import './style.css';
 import { connect } from 'react-redux';
 import requestFirstDoorin from '../../store/Dispatch/Door_In/First';
 import requestChangeScreen from '../../store/Dispatch/Door_In/ChangeScreen';
+import Steps from './StepsIndicator';
 
 
 const First = (props)=>{
@@ -19,6 +20,13 @@ const First = (props)=>{
             setBtnClass("btn btn-outline-primary");
         }
     },[loading]);
+
+
+    useEffect(()=>{
+        if(document.getElementById("firstStep")){
+            document.getElementById("firstStep").classList.add("active");
+        }
+    },[]);
 
     const [loading, setLoading] = useState(false);
     const [btnClass , setBtnClass] = useState("btn btn-outline-primary");
@@ -104,20 +112,17 @@ const First = (props)=>{
             }
 
             props.first_door_in_func(data);
-            setLoading(false);
+
         }
         
     }
 
     return (
         <div className="card card-body mainWrapper">
-            <div className="navigation_buttons"><div>&laquo; </div></div>
+            {/* <div className="navigation_buttons"><div>&laquo; </div></div> */}
+            <Steps />
             <form className="form-horizontal" onSubmit={handleSubmit}> 
-                <div className="steps_wrapper">
-                    <div className="steps current" >1</div>
-                    <div className="steps" >2</div>
-                    <div className="steps" id="last_step">3</div>
-                </div>
+                
                 <div className="form-group">
                     <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Full Name" className="form-control" />
                     <span className="error">

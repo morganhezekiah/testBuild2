@@ -4,8 +4,16 @@ import { fieldset,EntertainmentNiche } from './FieldSetAndNiche';
 import SendData from '../../store/Dispatch/Door_In/Second';
 import { connect } from 'react-redux';
 import requestChangeScreen from '../../store/Dispatch/Door_In/ChangeScreen';
+import Steps from './StepsIndicator';
+
 
 const Second = props => {
+
+    useEffect(()=>{
+        if(document.getElementById("secondStep")){
+            document.getElementById("secondStep").classList.add("active");
+        }
+    },[]);
     
     const [formData, setFormData ] = useState({
         fieldset:"Entertainment",
@@ -79,12 +87,8 @@ const Second = props => {
     
     return (
         <div className="card card-body mainWrapper">
+            <Steps />
             <form className="form-horizontal" onSubmit={handleSubmit}>
-                <div className="steps_wrapper">
-                    <div className="steps" >1</div>
-                    <div className="steps current" >2</div>
-                    <div className="steps" id="last_step">3</div>
-                </div>
             <div className="form-group">
                     <label>FieldSet</label>
                     <select name="fieldset" value={formData.fieldset} onChange={handleChange} className="form-control">
