@@ -112,7 +112,7 @@ const Third = props =>{
                 <div className="form_rounded_wrapper">
                     <div className="form-wrapper" >
                         <input type="password" required autoComplete="off" name="password" value={formData.password} onChange={handleChange}  />
-                        <label><span>Email</span></label>
+                        <label><span>Password</span></label>
                     </div>    
                         <span className="error">
                             {
