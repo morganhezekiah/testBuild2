@@ -6,8 +6,8 @@ const Second = ()=>{
     return (
         <div style={{'width':"70%","margin":"30px auto","display":"flex","justifyContent":"center"}}>
             <Loader
+            color="#ff9900"
             type="ThreeDots"
-            color="black"
          />
         </div>
         

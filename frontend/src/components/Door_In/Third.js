@@ -94,26 +94,35 @@ const Third = props =>{
         <div className="card card-body mainWrapper">
             <Step />
             <form className="form-horizontal" onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <input type="text" name="email" autoComplete="false" value={formData.email} onChange={handleChange} placeholder="email" className="form-control" />
-                    <span className="error">
-                        {
-                            emailError.state && emailError.message
-                        }
-                    </span>
 
+                <div className="form_rounded_wrapper">
+                    <div className="form-wrapper" >
+                        <input type="text" required autoComplete="off" name="email" autoComplete="false" value={formData.email} onChange={handleChange}  />
+                        <label><span>Email</span></label>
+                    </div>    
+                        <span className="error">
+                            {
+                                emailError.state && emailError.message
+                            }
+                        </span>
                 </div>
-                <div className="form-group">
-                    <input type="password" name="password" value={formData.password} onChange={handleChange}  placeholder="Password" className="form-control" />
-                    <span className="error">
-                        {
-                            passwordError.state && passwordError.message
-                        }
-                    </span>
+
+                
+
+                <div className="form_rounded_wrapper">
+                    <div className="form-wrapper" >
+                        <input type="password" required autoComplete="off" name="password" value={formData.password} onChange={handleChange}  />
+                        <label><span>Email</span></label>
+                    </div>    
+                        <span className="error">
+                            {
+                                passwordError.state && passwordError.message
+                            }
+                        </span>
                 </div>
                 <div className="form-group center_button">
                     {
-                        props.loading_data.loading ? <input type="submit" className="btn btn-outline-primary disabled" value="Continue" />:<input type="submit" className="btn btn-outline-primary" value="Continue" />
+                        props.loading_data.loading ? <input type="submit" className="btn btn-primary btns disabled" value="Continue" />:<input type="submit" className="btn btn-primary btns" value="Continue" />
                     }
                 </div>
             </form>

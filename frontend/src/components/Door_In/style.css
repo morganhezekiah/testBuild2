@@ -116,12 +116,12 @@ label {
 
 .form-wrapper{
     width: 100%;
-    height:53px;
+    height: 65px;
     margin-top:8px;
     overflow-x: hidden;
     position:relative;
 }
-.form-wrapper input {
+.form-wrapper input,.form-wrapper textarea {
     width:100%;
     height:100%;
     padding-top:14px;
@@ -156,12 +156,12 @@ label {
     bottom:5px;
     transition: all ease 0.5s;
 }
-.form-wrapper input:focus + label span, .form-wrapper input:valid + label span {
+.form-wrapper input:focus + label span, .form-wrapper input:valid + label span,.form-wrapper textarea:focus + label span, .form-wrapper textarea:valid + label span  {
     transform: translateY(-150%);
 }
 
 
-.form-wrapper input:focus + label::after, .form-wrapper input:valid + label::after {
+.form-wrapper input:focus + label::after, .form-wrapper input:valid + label::after,.form-wrapper textarea:focus + label::after, .form-wrapper textarea:valid + label::after {
     transform: translateX(0%);
 }
 .btns,.btns:focus,.btns:active {
@@ -176,4 +176,15 @@ label {
     background-color: green;
     border-color: green;
     box-shadow: 0 0 0 0.2rem green;
+}
+
+select {
+    border: 1px solid #ff9900 !important;
+}
+select:focus{
+    color: #495057;
+    background-color: #fff;
+    border-color: #ff9900 !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #ff9900 !important;
 }

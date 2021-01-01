@@ -117,9 +117,13 @@ const Second = props => {
                     
                 </div>
 
-                <div className="form-group">
-                    <label>Describe Yourselve({descriptionData}/200)</label>
-                        <textarea value={formData.description} name="description" onChange={descriptionChange}  className="form-control"></textarea>
+                
+
+                <div className="form_rounded_wrapper" style={{"padding": "2px 10px 34px 10px"}}>
+                    <div className="form-wrapper" >
+                        <textarea type="date" required autoComplete="off" value={formData.description} name="description" onChange={descriptionChange}  ></textarea>
+                        <label><span>Describe Yourselve({descriptionData}/200)</span></label>
+                    </div>    
                         <span className="error">
                             {
                                 describeError.state && `${describeError.message}`
@@ -129,7 +133,7 @@ const Second = props => {
 
                 <div className="form-group center_button">
                     {
-                        props.loading_data.loading ? <input type="submit" className="btn btn-outline-primary disabled" value="Continue" />:<input type="submit" className="btn btn-outline-primary" value="Continue" />
+                        props.loading_data.loading ? <input type="submit" className="btn btn-primary btns disabled" value="Continue" />:<input type="submit" className="btn btn-primary btns" value="Continue" />
                     }
                 </div>
             </form>
