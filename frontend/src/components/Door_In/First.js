@@ -6,6 +6,7 @@ import requestChangeScreen from '../../store/Dispatch/Door_In/ChangeScreen';
 import Steps from './StepsIndicator';
 
 
+
 const First = (props)=>{
     useEffect(()=>{
         if(props.first_door_in_data.data.fullName === formData.fullName){
@@ -119,18 +120,22 @@ const First = (props)=>{
 
     return (
         <div className="card card-body mainWrapper">
-            {/* <div className="navigation_buttons"><div>&laquo; </div></div> */}
+            
             <Steps />
             <form className="form-horizontal" onSubmit={handleSubmit}> 
-                
-                <div className="form-group">
-                    <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Full Name" className="form-control" />
-                    <span className="error">
-                        {
-                            fullNameerror.state && `${fullNameerror.message}`
-                        }
-                    </span>
+                <div className="form_rounded_wrapper">
+                    <div className="form-wrapper" >
+                        <input type="text" required autoComplete="off" name="fullName" value={formData.fullName} onChange={handleChange}  />
+                        <label><span>Full Name</span></label>
+                    </div>
+                        <span className="error">
+                            {
+                                fullNameerror.state && `${fullNameerror.message}`
+                            }
+                        </span>
                 </div>
+                
+                
 
                 <div className="sex_form_div">
                     <label>Sex</label><br />
@@ -138,19 +143,22 @@ const First = (props)=>{
                     <input type="radio" value="Female"  name="sex" onChange={handleChange}   className="ml-2"  /><span className="ml-2 ">Female</span>
                 </div>
 
-                <div className="form-group mt-1">
-                    <label>Date Of Birth</label>
-                    <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange}  className="form-control" />
-                    <span className="error">
-                        {
-                            dateOfBirtherror.state && `${dateOfBirtherror.message}`
-                        }
-                    </span>
-                    
+                <div className="form_rounded_wrapper">
+                    <div className="form-wrapper" >
+                        <input type="date" required autoComplete="off" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange}  />
+                        <label><span>Date Of Birth</span></label>
+                    </div>    
+                        <span className="error">
+                            {
+                                dateOfBirtherror.state && `${dateOfBirtherror.message}`
+                            }
+                        </span>
                 </div>
+                    
+                
 
                 <div className="center_button">
-                    <input type="submit" className={btnClass} value="Continue" />
+                    <input type="submit" className="btn btn-primary btns" value="Continue" />
                 </div>
             </form>
         </div>
