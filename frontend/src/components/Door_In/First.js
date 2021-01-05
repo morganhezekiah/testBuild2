@@ -126,7 +126,6 @@ const First = (props)=>{
             <ThemeToggler />
             <Steps />
             <form className="form-horizontal" onSubmit={handleSubmit}> 
-            <input type="text" class="datepicker" />
 
                 <div className="form_rounded_wrapper">
                     <div class="input-field">
