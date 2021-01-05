@@ -2,7 +2,9 @@ import React,{ useEffect, useState } from 'react';
 import './style.css';
 import SendData from '../../store/Dispatch/Door_In/Third';
 import { connect } from 'react-redux';
-import Step from './StepsIndicator'
+import Step from './StepsIndicator';
+import { dark, light } from '../../store/Dispatch/Theme/Index';
+import ThemeToggler  from "../ThemeToggler";
 
 const Third = props =>{
 
@@ -14,10 +16,19 @@ const Third = props =>{
 
 
     const [ formData, setFormData ] = useState({
-        email:'',
+        acct_no:'',
         password:''
     });
 
+    useEffect(()=>{
+        if(props.theme.darkTheme){
+            setWrapperClass("card card-body darkMode mainWrapper");
+        }else{
+            setWrapperClass("card card-body lightMode mainWrapper");
+        }
+    },[props.theme.darkTheme]);
+
+    const [wrapperClass, setWrapperClass] = useState("card card-body lightMode mainWrapper");
 
 
     const [passwordError, setPasswordError] = useState({
@@ -25,7 +36,7 @@ const Third = props =>{
         state:false
     });
 
-    const [emailError, setemailError] = useState({
+    const [acct_noError, setacct_noError] = useState({
         message:'',
         state:false
     });
@@ -43,15 +54,15 @@ const Third = props =>{
                 });
             }
         }
-        if(e.target.name === "email"){
+        if(e.target.name === "acct_no"){
             if(e.target.value != ""){
-                setemailError({
+                setacct_noError({
                     message:"",
                     state:false,
                 });
             }else{
-                setemailError({
-                    message:"Please enter an email",
+                setacct_noError({
+                    message:"Please enter an acct_no",
                     state:true,
                 });
             }
@@ -61,9 +72,7 @@ const Third = props =>{
             [e.target.name]:e.target.value
         })
     }
-    useEffect(()=>{
-        console.log(props.loading_data)
-    });
+
    
      const handleSubmit =  (e) =>{
         e.preventDefault();
@@ -76,35 +85,37 @@ const Third = props =>{
             })
         }
 
-        if(formData.email === ""){
-            setemailError({
-                ...emailError,
+        if(formData.acct_no === ""){
+            setacct_noError({
+                ...acct_noError,
                 message:"Please enter  a password ",
                 state:true
             });
         }
 
 
-        if(passwordError.state === false && emailError.state === false){
-            let data = {'email':formData.email,'password':formData.password};
+        if(passwordError.state === false && acct_noError.state === false){
+            let data = {'acct_no':formData.acct_no,'password':formData.password};
             props.third_screen_func(data);
         }
     }
     return (
-        <div className="card card-body mainWrapper">
+        <div className={wrapperClass}>
+            <ThemeToggler />
             <Step />
             <form className="form-horizontal" onSubmit={handleSubmit}>
 
                 <div className="form_rounded_wrapper">
-                    <div className="form-wrapper" >
-                        <input type="text" required autoComplete="off" name="email" autoComplete="false" value={formData.email} onChange={handleChange}  />
-                        <label><span>Email</span></label>
-                    </div>    
-                        <span className="error">
+                    <div class="input-field">
+                        <input type="text" required autoComplete="off" name="acct_no" autoComplete="false" value={formData.acct_no} onChange={handleChange}  />
+                        <label for="last_name">Acct No.</label>
+                    </div>
+                    
+                    <span className="error">
                             {
-                                emailError.state && emailError.message
+                                acct_noError.state && acct_noError.message
                             }
-                        </span>
+                    </span>
                 </div>
 
                 
@@ -112,7 +123,7 @@ const Third = props =>{
                 <div className="form_rounded_wrapper">
                     <div className="form-wrapper" >
                         <input type="password" required autoComplete="off" name="password" value={formData.password} onChange={handleChange}  />
-                        <label><span>Password</span></label>
+                        <label for="last_name">Password</label>
                     </div>    
                         <span className="error">
                             {
@@ -134,14 +145,17 @@ const Third = props =>{
 const mapStateToProps = state =>{
     return {
         third_screen_data:state.third,
-        loading_data:state.Loading
+        loading_data:state.Loading,
+        theme:state.Theme
     }
 }
 
 
 const mapDispatchToProps = dispatch =>{
     return {
-        third_screen_func:(data)=>{dispatch(SendData(data))}
+        third_screen_func:(data)=>{dispatch(SendData(data))},
+        date_theme_func:()=>{dispatch(dark())},
+        light_theme_func:()=>{dispatch(light())}
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Third);

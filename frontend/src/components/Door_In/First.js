@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import requestFirstDoorin from '../../store/Dispatch/Door_In/First';
 import requestChangeScreen from '../../store/Dispatch/Door_In/ChangeScreen';
 import Steps from './StepsIndicator';
+import ThemeToggler  from "../ThemeToggler";
+import { dark, light } from '../../store/Dispatch/Theme/Index';
+
 
 
 
@@ -14,13 +17,7 @@ const First = (props)=>{
         }
     }, [props.first_door_in_data]);
 
-    useEffect(()=>{
-        if(loading){
-            setBtnClass("btn btn-outline-primary disabled");
-        }else{
-            setBtnClass("btn btn-outline-primary");
-        }
-    },[loading]);
+    const [wrapperClass, setWrapperClass] = useState("card card-body lightMode mainWrapper");
 
 
     useEffect(()=>{
@@ -29,8 +26,14 @@ const First = (props)=>{
         }
     },[]);
 
-    const [loading, setLoading] = useState(false);
-    const [btnClass , setBtnClass] = useState("btn btn-outline-primary");
+    useEffect(()=>{
+        if(props.theme.darkTheme){
+            setWrapperClass("card card-body darkMode mainWrapper");
+        }else{
+            setWrapperClass("card card-body lightMode mainWrapper");
+        }
+    },[props.theme.darkTheme]);
+
     const [formData, setFormData] = useState({
         fullName:'',
         dateOfBirth:''
@@ -64,6 +67,7 @@ const First = (props)=>{
                 )
             }
         }
+        
 
         if(e.target.name == "dateOfBirth"){
             if(e.target.value != ""){
@@ -82,7 +86,6 @@ const First = (props)=>{
     }
     const handleSubmit =(e)=>{
         e.preventDefault();
-        setLoading(true);
         if(formData.fullName == ""){
             setFullNameError({
                         message:"Please enter a date of Full name value",
@@ -111,48 +114,64 @@ const First = (props)=>{
                 dateOfBirth:formData.dateOfBirth,
                 sex:sexValue
             }
-
             props.first_door_in_func(data);
-
         }
+        
         
     }
 
     return (
-        <div className="card card-body mainWrapper">
-            
+        
+    <div className={wrapperClass}>
+            <ThemeToggler />
             <Steps />
             <form className="form-horizontal" onSubmit={handleSubmit}> 
+            <input type="text" class="datepicker" />
+
                 <div className="form_rounded_wrapper">
-                    <div className="form-wrapper" >
-                        <input type="text" required autoComplete="off" name="fullName" value={formData.fullName} onChange={handleChange}  />
-                        <label><span>Full Name</span></label>
+                    <div class="input-field">
+                        <input id="last_name" name="fullName" value={formData.fullName} onChange={handleChange} type="text" class="validate" />
+                        <label for="last_name">Last Name</label>
                     </div>
-                        <span className="error">
-                            {
-                                fullNameerror.state && `${fullNameerror.message}`
-                            }
-                        </span>
-                </div>
-                
-                
-
-                <div className="sex_form_div">
-                    <label>Sex</label><br />
-                    <input type="radio" value="Male" id="sexInputMale"   name="sex" checked onChange={handleChange}     /><span className="ml-2 ">Male</span>
-                    <input type="radio" value="Female"  name="sex" onChange={handleChange}   className="ml-2"  /><span className="ml-2 ">Female</span>
+                    
+                    <span className="error">
+                                {
+                                    fullNameerror.state && `${fullNameerror.message}`
+                                }
+                    </span> 
                 </div>
 
                 <div className="form_rounded_wrapper">
-                    <div className="form-wrapper" >
-                        <input type="date" required autoComplete="off" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange}  />
-                        <label><span>Date Of Birth</span></label>
-                    </div>    
-                        <span className="error">
+                    <p>Sex</p>
+                    <div style={{'display':"flex"}}>
+                        <p>
+                            <label>
+                                <input  type="radio" value="Male" id="sexInputMale"   name="sex" checked onChange={handleChange}  />
+                                <span>Male</span>
+                            </label>
+                        </p>
+                        <p className="ml-5">
+                            <label>
+                                <input type="radio" value="Female"  name="sex" onChange={handleChange}  />
+                                <span>Female</span>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+
+                
+
+                <div className="form_rounded_wrapper">
+                    <div class="input-field">
+                        <input  type="date" required  name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} class="validate" />
+                        <label for="last_name">Date Of Birth</label>
+                    </div>
+                    
+                    <span className="error">
                             {
                                 dateOfBirtherror.state && `${dateOfBirtherror.message}`
                             }
-                        </span>
+                    </span> 
                 </div>
                     
                 
@@ -162,18 +181,23 @@ const First = (props)=>{
                 </div>
             </form>
         </div>
+
     );
 }
 const mapStateToProps = state =>{
     return {
-        first_door_in_data:state.FirstDoorIn
+        first_door_in_data:state.FirstDoorIn,
+        theme:state.Theme,
     }
 }
 
 const mapDispatchToProps = dispatch =>{
     return {
+        
         first_door_in_func:(data)=>{dispatch(requestFirstDoorin(data))},
-        ChangeScreen:(data)=>{dispatch(requestChangeScreen(data))}
+        ChangeScreen:(data)=>{dispatch(requestChangeScreen(data))},
+        date_theme_func:()=>{dispatch(dark())},
+        light_theme_func:()=>{dispatch(light())}
     }
 }
 

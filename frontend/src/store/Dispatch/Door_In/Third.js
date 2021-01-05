@@ -1,7 +1,8 @@
 import {THIRD_DOOR_IN_REQUEST, THIRD_DOOR_IN_REQUEST_ERROR, THIRD_DOOR_IN_REQUEST_SUCCESS} from '../../Action/Door_In';
 import store from '../../store';
 import swal from 'sweetalert';
-import { APP_LOADING, APP_NOT_LOADING } from '../../Action/Loading';
+
+
 
 
 
@@ -26,12 +27,10 @@ const init = data =>{
         dispatch({
             type:THIRD_DOOR_IN_REQUEST
         });
-        dispatch({
-            type:APP_LOADING
-        });
-        if(data.email && data.password){
+        
+        if(data.acct_no && data.password){
             let datum = {
-                'email':data.email,
+                'acct_no':data.acct_no,
                 'password':data.password,
                 'description':store.getState().Second.data.description,
                 'fieldset':store.getState().Second.data.fieldSet,
@@ -41,9 +40,9 @@ const init = data =>{
                 'sex':store.getState().FirstDoorIn.data.sex
             };
 
-            dispatch({
-                type:APP_LOADING
-            });
+            // dispatch({
+            //     type:APP_LOADING
+            // });
             fetch('/users/create',{
                 method:"POST",
                 headers:{
@@ -58,9 +57,9 @@ const init = data =>{
                 })
                 .then(data =>{
                     if(data.status){
-                        var email = data.data.email;
+                        var acct_no = data.data.acct_no;
                         var password = data.data.password;
-                        localStorage.setItem('USER_EMAIL', email);
+                        localStorage.setItem('USER_acct_no', acct_no);
                         localStorage.setItem("USER_PASS", password);
                         location.href = "/users/login";
                     }else{

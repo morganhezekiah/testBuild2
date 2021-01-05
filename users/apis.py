@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 class CreateUser(APIView):
     def post(self, request):
         data = request.data
-        email = data.get("email")
+        acct_no = data.get("acct_no")
         password = data.get("password")
         description = data.get("description")
         fieldset = data.get("fieldset")
@@ -21,9 +21,9 @@ class CreateUser(APIView):
         dateOfBirth = data.get("dateOfBirth")
         sex = data.get("sex")
         
-        if email and password and description and fieldset and niche and fullName and dateOfBirth and sex:
+        if acct_no and password and description and fieldset and niche and fullName and dateOfBirth and sex:
             data = {
-                "email":email,
+                "acct_no":acct_no,
                 'password':make_password(password),
                 'description':description,
                 'fieldSet':fieldset,
@@ -48,12 +48,12 @@ class CreateUser(APIView):
 class LoginUser(APIView):
     def post(self, request):
         data = request.data
-        email = data.get("email")
+        acct_no = data.get("acct_no")
         password = data.get("password")
         
-        if email and password:
+        if acct_no and password:
             
-            authen = authenticator.authenticate(request, email, password)
+            authen = authenticator.authenticate(request, acct_no, password)
 
             if authen is not None:
                 auth.login(request, authen)

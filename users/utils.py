@@ -3,14 +3,14 @@ from django.contrib.auth.hashers import check_password
 from .models import User
 
 class Authenticator(BaseBackend):
-    def getUser(self, email):
-        user = User.objects.get(email = email)
+    def getUser(self, acct_no):
+        user = User.objects.get(acct_no = acct_no)
         if user :
             return user
         return None
     
-    def authenticate(self,request, email, password):
-        user = self.getUser(email)
+    def authenticate(self,request, acct_no, password):
+        user = self.getUser(acct_no)
         
         if user is not None:
             password_data = user.password

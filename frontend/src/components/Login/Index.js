@@ -1,9 +1,12 @@
 import React,{useState, useEffect } from 'react';
-import './style.css';
+import '../Door_In/style.css';
 import { csrf_generator } from '../../util/csrf_generator';
+import ThemeToggler from '../ThemeToggler';
+import { dark , light } from '../../store/Dispatch/Theme/Index';
+import { connect } from 'react-redux';
 
 const Index = props =>{
-    const [formData, setFormData] = useState({"email":'',"password":''});
+    const [formData, setFormData] = useState({"acct_no":'',"password":''});
     const handleChange = e=>{
         setFormData({
             ...formData,
@@ -11,15 +14,24 @@ const Index = props =>{
         });
 
     }
+    useEffect(()=>{
+        if(props.theme.darkTheme){
+            setWrapperClass("card card-body darkMode mainWrapper");
+        }else{
+            setWrapperClass("card card-body lightMode mainWrapper");
+        }
+    },[props.theme.darkTheme]);
+
+    const [wrapperClass, setWrapperClass] = useState("card card-body lightMode mainWrapper");
 
     useEffect(()=>{
-        let email = localStorage.getItem("USER_EMAIL");
+        let acct_no = localStorage.getItem("USER_ACCT");
         let password = localStorage.getItem("USER_PASS");
 
-        if (email && password)
+        if (acct_no && password)
         {
             setFormData({
-                'email':email,
+                'acct_no':acct_no,
                 'password':password
             });
         }
@@ -46,15 +58,36 @@ const Index = props =>{
     }
      
     return (
-        <div className="mainWrapper">
+        <div className={wrapperClass}>
+            <ThemeToggler />
             <form className="form-horizontal" onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <input type="text" name="email" autoComplete="off" onChange = {handleChange} value={formData.email} className="form-control" placeholder="Email" />
+
+                <div className="form_rounded_wrapper">
+                    <div class="input-field">
+                        <input type="text" name="acct_no" autoComplete="off" onChange = {handleChange} value={formData.acct_no} className="form-control" placeholder="Acct no." />
+                        <label for="last_name">Last Name</label>
+                    </div>
+                    
+                    {/* <span className="error">
+                                {
+                                    fullNameerror.state && `${fullNameerror.message}`
+                                }
+                    </span>  */}
                 </div>
 
-                <div className="form-group">
-                    <input type="password" name="password" autoComplete="off" onChange = {handleChange} value={formData.password} className="form-control" placeholder="Email" />
+                <div className="form_rounded_wrapper">
+                    <div class="input-field">
+                        <input type="password" name="password" autoComplete="off" onChange = {handleChange} value={formData.password} className="form-control" placeholder="Password" />
+                        <label for="last_name">Password</label>
+                    </div>
+                    
+                    {/* <span className="error">
+                                {
+                                    fullNameerror.state && `${fullNameerror.message}`
+                                }
+                    </span>  */}
                 </div>
+                
 
                 <div className="center_button">
                     <input type="submit" className="btn btn-outline-primary" />
@@ -64,4 +97,19 @@ const Index = props =>{
     )
 }
 
-export default Index;
+
+
+const mapStateToProps = state =>{
+    return {
+        theme:state.Theme,
+    }
+}
+
+const mapDispatchToProps = dispatch =>{
+    return {
+        date_theme_func:()=>{dispatch(dark())},
+        light_theme_func:()=>{dispatch(light())}
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Index);

@@ -4,6 +4,7 @@ import ChangeScreen from '../Reducers/Door_In/ChangeScreen';
 import Second from '../Reducers/Door_In/Second';
 import Third from '../Reducers/Door_In/Third';
 import Loading from '../Reducers/Loading/Loading';
+import Theme from '../Reducers/Theme/Index';
 
 const reducers = combineReducers({
     FirstDoorIn,
@@ -11,6 +12,7 @@ const reducers = combineReducers({
     Second,
     Third,
     Loading,
+    Theme,
 });
 
 export default reducers;

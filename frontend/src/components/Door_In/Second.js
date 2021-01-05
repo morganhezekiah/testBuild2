@@ -5,6 +5,8 @@ import SendData from '../../store/Dispatch/Door_In/Second';
 import { connect } from 'react-redux';
 import requestChangeScreen from '../../store/Dispatch/Door_In/ChangeScreen';
 import Steps from './StepsIndicator';
+import { dark, light } from '../../store/Dispatch/Theme/Index';
+import ThemeToggler  from "../ThemeToggler";
 
 
 const Second = props => {
@@ -14,6 +16,16 @@ const Second = props => {
             document.getElementById("secondStep").classList.add("active");
         }
     },[]);
+
+    useEffect(()=>{
+        if(props.theme.darkTheme){
+            setWrapperClass("card card-body darkMode mainWrapper");
+        }else{
+            setWrapperClass("card card-body lightMode mainWrapper");
+        }
+    },[props.theme.darkTheme]);
+
+    const [wrapperClass, setWrapperClass] = useState("card card-body lightMode mainWrapper");
     
     const [formData, setFormData ] = useState({
         fieldset:"Entertainment",
@@ -86,7 +98,8 @@ const Second = props => {
 
     
     return (
-        <div className="card card-body mainWrapper">
+        <div className={wrapperClass}>
+            <ThemeToggler />
             <Steps />
             <form className="form-horizontal" onSubmit={handleSubmit}>
             <div className="form-group">
@@ -117,19 +130,19 @@ const Second = props => {
                     
                 </div>
 
-                
-
                 <div className="form_rounded_wrapper" style={{"padding": "2px 10px 34px 10px"}}>
-                    <div className="form-wrapper" >
-                        <textarea type="date" required autoComplete="off" value={formData.description} name="description" onChange={descriptionChange}  ></textarea>
-                        <label><span>Describe Yourselve({descriptionData}/200)</span></label>
-                    </div>    
+                    <div class="input-field">
+                        <textarea   value={formData.description} name="description" onChange={descriptionChange} class="materialize-textarea"></textarea>
+                        <label htmlFor="textarea1" style={{"pointerEvents":"none"}}>Describe Yourselve({descriptionData}/200)</label>
                         <span className="error">
-                            {
-                                describeError.state && `${describeError.message}`
-                            }
+                                {
+                                    describeError.state && `${describeError.message}`
+                                }
                         </span>
+                    </div>  
                 </div>
+
+                
 
                 <div className="form-group center_button">
                     {
@@ -144,14 +157,17 @@ const Second = props => {
 const mapStateToProps = state =>{
     return {
         second_screen_data:state.Second,
-        loading_data:state.Loading
+        loading_data:state.Loading,
+        theme:state.Theme,
     }
 }
 
 const mapDispatchToProps = dispatch =>{
     return {
         second_screen_func:(data)=>{dispatch(SendData(data))},
-        ChangeScreen :(screen) =>{dispatch(requestChangeScreen(screen))}
+        ChangeScreen :(screen) =>{dispatch(requestChangeScreen(screen))},
+        date_theme_func:()=>{dispatch(dark())},
+        light_theme_func:()=>{dispatch(light())}
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Second);
