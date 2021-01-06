@@ -2,6 +2,7 @@ from django.urls import path
 from .views import door_in, login, homeUser
 from .apis import CreateUser, LoginUser
 from .payment_views import payment,successful_payment
+from .statics import returnLogo
 urlpatterns = [
     ##HTTP CONTROLLERS
     path('door_in', door_in , name="door in"),
@@ -15,5 +16,8 @@ urlpatterns = [
     
     ##API CONTROLLERS
     path('create', CreateUser.as_view()),
-    path('loginUser', LoginUser.as_view())
+    path('loginUser', LoginUser.as_view()),
+    
+    ##STATIC CONTROLLER
+    path("logo",returnLogo, name="Logo Returner")
 ]

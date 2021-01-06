@@ -140,3 +140,5 @@ LOGIN_URL ="/users/login"
 LOGIN_REDIRECT = "/users/home"
 STRIPE_KEY ="sk_test_51I3rSOFLCTJtfSf3iZ45B8b4tFIcuhrY2SpCXhGKbiVqD7UwROvkUh9fKdBTL51bPQtDE4vfalNbWD9MR0uAb2nM00aPQWAqQc"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_URL ="/media/"
+MEDIA_PATH =os.path.join(BASE_DIR, 'media')

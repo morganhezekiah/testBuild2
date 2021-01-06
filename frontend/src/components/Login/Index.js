@@ -4,6 +4,7 @@ import { csrf_generator } from '../../util/csrf_generator';
 import ThemeToggler from '../ThemeToggler';
 import { dark , light } from '../../store/Dispatch/Theme/Index';
 import { connect } from 'react-redux';
+import Logo from '../Door_In/Logo';
 
 const Index = props =>{
     const [formData, setFormData] = useState({"acct_no":'',"password":''});
@@ -59,6 +60,7 @@ const Index = props =>{
      
     return (
         <div className={wrapperClass}>
+            <Logo />
             <ThemeToggler />
             <form className="form-horizontal" onSubmit={handleSubmit}>
 

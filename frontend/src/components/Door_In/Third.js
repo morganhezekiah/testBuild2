@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Step from './StepsIndicator';
 import { dark, light } from '../../store/Dispatch/Theme/Index';
 import ThemeToggler  from "../ThemeToggler";
+import Logo from './Logo';
 
 const Third = props =>{
 
@@ -101,6 +102,7 @@ const Third = props =>{
     }
     return (
         <div className={wrapperClass}>
+            <Logo />
             <ThemeToggler />
             <Step />
             <form className="form-horizontal" onSubmit={handleSubmit}>

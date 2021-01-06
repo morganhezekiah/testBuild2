@@ -78,6 +78,10 @@
     margin-bottom: 12px;
 }
 
+.form_rounded_wrapper:nth-child(1){
+    margin-top: 31px;
+}
+
 select{
     border: 1px solid orange !important ;
 }
@@ -146,12 +150,12 @@ select{
 /*TOGGLER STYLES */
 .toggleContainer{
     position: absolute;
-    top: 10px;
+    top: 18px;
     outline: none;
     width: 33px;
     height: 8px;
     border: 1.2px solid orange;
-    right: 60px;
+    right: 20px;
     border-radius: 43px;
 }
 

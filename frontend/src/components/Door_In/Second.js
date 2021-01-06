@@ -7,6 +7,7 @@ import requestChangeScreen from '../../store/Dispatch/Door_In/ChangeScreen';
 import Steps from './StepsIndicator';
 import { dark, light } from '../../store/Dispatch/Theme/Index';
 import ThemeToggler  from "../ThemeToggler";
+import Logo from './Logo';
 
 
 const Second = props => {
@@ -99,6 +100,7 @@ const Second = props => {
     
     return (
         <div className={wrapperClass}>
+            <Logo />
             <ThemeToggler />
             <Steps />
             <form className="form-horizontal" onSubmit={handleSubmit}>
